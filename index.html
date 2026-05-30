@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chad Bartley — AI Engineer (Rust · Python · TypeScript)</title>
+    <meta
+      name="description"
+      content="AI engineer building production agent runtimes, LLM tooling, and RAG in Rust, Python, and TypeScript. I built Ward's core — live on a $400M, 850-store retailer's SAP data. Ex-Meta, YC founder. Available for contract work, remote."
+    />
+
+    <!-- Open Graph / link previews (HN, LinkedIn, Slack). These stay static so previews work
+     even though the body is rendered client-side. -->
+    <meta
+      property="og:title"
+      content="Chad Bartley — AI Engineer (Rust · Python · TypeScript)"
+    />
+    <meta
+      property="og:description"
+      content="Production AI systems in Rust, Python, and TypeScript. Built Ward's core, live on a $400M, 850-store retailer's SAP data. Ex-Meta, YC founder. Open to contract, remote."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://ChadBartley.github.io/chadbartley-site/"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --paper: #f4f1ea;
+        --paper-2: #efebe1;
+        --ink: #211f1a;
+        --muted: #57534a;
+        --faint: #8a857a;
+        --line: #ddd8cc;
+        --line-strong: #211f1a;
+        --accent: #9a3b2e;
+        --accent-soft: rgba(154, 59, 46, 0.18);
+        --maxw: 760px;
+        --display: "Fraunces", Georgia, "Times New Roman", serif;
+        --body: "Newsreader", Georgia, serif;
+        --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --paper: #16150f;
+          --paper-2: #1c1a13;
+          --ink: #ece7da;
+          --muted: #b3ac9b;
+          --faint: #847d6d;
+          --line: #322f25;
+          --line-strong: #ece7da;
+          --accent: #df6a58;
+          --accent-soft: rgba(223, 106, 88, 0.22);
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font: 400 19px/1.62 var(--body);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      /* Faint paper grain for depth — behind everything, ignores pointer events. */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        opacity: 0.5;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+      }
+
+      #resume {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 88px 28px 112px;
+        counter-reset: sec;
+      }
+
+      /* Name */
+      #resume h1 {
+        font-family: var(--display);
+        font-weight: 600;
+        font-size: clamp(46px, 8.5vw, 78px);
+        line-height: 0.95;
+        letter-spacing: -0.025em;
+        margin: 0 0 18px;
+      }
+
+      /* Contact line — the paragraph immediately after the name */
+      #resume h1 + p {
+        font-family: var(--mono);
+        font-size: 13.5px;
+        line-height: 1.95;
+        letter-spacing: 0.01em;
+        color: var(--muted);
+        margin: 0;
+      }
+      #resume h1 + p a {
+        color: var(--muted);
+        border-bottom: 1px solid var(--line);
+      }
+      #resume h1 + p a:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+
+      /* The --- under the contact block becomes a strong rule */
+      #resume hr {
+        border: none;
+        border-top: 2px solid var(--line-strong);
+        margin: 30px 0 36px;
+      }
+
+      /* Summary paragraph (first paragraph after the hr) is the editorial lead */
+      #resume hr + p {
+        font-family: var(--display);
+        font-weight: 500;
+        font-size: clamp(21px, 3.2vw, 25px);
+        line-height: 1.45;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+        margin: 0 0 12px;
+        text-wrap: pretty;
+      }
+
+      /* Section headers — auto-numbered "01 / Experience" */
+      #resume h2 {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        font-family: var(--mono);
+        font-weight: 500;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--ink);
+        margin: 64px 0 26px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--line);
+      }
+      #resume h2::before {
+        counter-increment: sec;
+        content: counter(sec, decimal-leading-zero) " /";
+        color: var(--accent);
+        font-weight: 500;
+        letter-spacing: 0.05em;
+      }
+
+      /* Body paragraphs (role descriptions). A leading <strong> = the role title line. */
+      #resume p {
+        margin: 0 0 28px;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.62;
+        text-wrap: pretty;
+      }
+      #resume p strong {
+        display: block;
+        color: var(--ink);
+        font-weight: 600;
+        font-size: 18.5px;
+        line-height: 1.35;
+        margin-bottom: 5px;
+      }
+
+      /* Lists (projects, anything bulleted) */
+      #resume ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      #resume li {
+        position: relative;
+        padding-left: 22px;
+        margin-bottom: 18px;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.6;
+        text-wrap: pretty;
+      }
+      #resume li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.62em;
+        width: 7px;
+        height: 7px;
+        background: var(--accent);
+        transform: rotate(45deg);
+      }
+      #resume li strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      /* Links in body */
+      #resume a {
+        color: var(--accent);
+        text-decoration: none;
+        border-bottom: 1px solid var(--accent-soft);
+        transition: border-color 0.15s;
+      }
+      #resume a:hover {
+        border-color: var(--accent);
+      }
+      #resume code {
+        font-family: var(--mono);
+        font-size: 0.88em;
+        background: var(--paper-2);
+        padding: 1px 5px;
+        border-radius: 3px;
+      }
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+
+      .status {
+        color: var(--faint);
+        padding: 88px 28px;
+        max-width: var(--maxw);
+        margin: 0 auto;
+        font-family: var(--mono);
+        font-size: 14px;
+      }
+
+      /* Staggered load reveal as the rendered markdown drops in (no JS needed,
+       and skipped entirely for reduced-motion preferences). */
+      @media (prefers-reduced-motion: no-preference) {
+        #resume > * {
+          opacity: 0;
+          animation: rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+        }
+        #resume > *:nth-child(1) { animation-delay: 0ms; }
+        #resume > *:nth-child(2) { animation-delay: 55ms; }
+        #resume > *:nth-child(3) { animation-delay: 110ms; }
+        #resume > *:nth-child(4) { animation-delay: 165ms; }
+        #resume > *:nth-child(5) { animation-delay: 220ms; }
+        #resume > *:nth-child(6) { animation-delay: 275ms; }
+        #resume > *:nth-child(7) { animation-delay: 330ms; }
+        #resume > *:nth-child(8) { animation-delay: 385ms; }
+        #resume > *:nth-child(9) { animation-delay: 440ms; }
+        #resume > *:nth-child(n + 10) { animation-delay: 495ms; }
+        @keyframes rise {
+          from { opacity: 0; transform: translateY(14px); }
+          to { opacity: 1; transform: none; }
+        }
+      }
+
+      @media (max-width: 560px) {
+        #resume {
+          padding: 56px 22px 72px;
+        }
+      }
+
+      /* Print: clean black-on-white résumé */
+      @media print {
+        :root {
+          --paper: #fff;
+          --paper-2: #fff;
+          --ink: #000;
+          --muted: #222;
+          --faint: #555;
+          --line: #ccc;
+          --line-strong: #000;
+          --accent: #000;
+        }
+        body::before { display: none; }
+        #resume > * { opacity: 1; animation: none; }
+        #resume { padding: 0; max-width: none; }
+        #resume h2 { margin-top: 28px; }
+        #resume p, #resume li { page-break-inside: avoid; }
+        #resume a { border: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="resume"><p class="status">Loading…</p></main>
+
+    <!-- Markdown renderer (marked.js, pinned). Fetches the resume source of truth and renders it,
+     so the site and the text resume never drift. -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+    <script>
+      // The single source of truth. Upload this .md alongside index.html; edit ONLY the .md going forward.
+      const SOURCE = "engineering-v1.md";
+
+      fetch(SOURCE)
+        .then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.text();
+        })
+        .then(function (md) {
+          document.getElementById("resume").innerHTML = marked.parse(md);
+        })
+        .catch(function (e) {
+          document.getElementById("resume").innerHTML =
+            '<p class="status">Couldn\'t load ' +
+            SOURCE +
+            " (" +
+            e.message +
+            "). " +
+            "If testing locally, run a local server — browsers block file:// fetches.</p>";
+        });
+    </script>
+
+    <!-- Cloudflare Web Analytics — free, privacy-friendly, no cookie banner.
+     Get a token: Cloudflare dashboard → Web Analytics → Add a site → copy the token,
+     then replace YOUR_CLOUDFLARE_TOKEN below. -->
+    <!-- Cloudflare Web Analytics -->
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "a737af2a9cf74ce3948dd88dcbdcaa72"}'
+    ></script>
+    <!-- End Cloudflare Web Analytics -->
+  </body>
+</html>
