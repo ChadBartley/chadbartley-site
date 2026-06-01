@@ -16,9 +16,9 @@ I'll decide what to build and ship it.
 
 **Ward (getward.ai) — Co-Founder & CPO** · 2025–Present
 Ward lets a company question its own data and trust the answers. I built the core in Rust myself:
-the **agent runtime**, the analytics layer, and the multi-tenant security and audit model — Cedar
+the agent runtime, the analytics layer, and the multi-tenant security and audit model — Cedar
 policy enforcement and SOC 2 logging — that makes it safe inside a regulated enterprise's own
-environment. It's live in a paid POC against a **$400M, 850-store grocery chain's live SAP data**,
+environment. It's live in a paid POC against a $400M, 850-store grocery chain's live SAP data,
 with 14 more companies running on the same platform.
 
 **HyperMarket — Brought in to fix a failing platform** · 2025
